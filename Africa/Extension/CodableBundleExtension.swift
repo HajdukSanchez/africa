@@ -8,9 +8,9 @@
 import Foundation
 
 extension Bundle {
-    func decode(_ file: String) -> [CoverImage] {
+    func decode<T: Codable>(_ file: JsonFilesNames) -> T {
         // 1. Locale json file
-        guard let url = self.url(forResource: file, withExtension: nil) else {
+        guard let url = self.url(forResource: file.rawValue, withExtension: nil) else {
             fatalError("Failed to locate \(file) in bundle")
         }
         // 2. Create a property for data
@@ -20,7 +20,7 @@ extension Bundle {
         // 3. Create a decoder
         let decoder = JSONDecoder()
         // 4. Create a property for decode the data
-        guard let loaded = try? decoder.decode([CoverImage].self, from: data) else {
+        guard let loaded = try? decoder.decode(T.self, from: data) else {
             fatalError("Failed to decode \(file) from bundle")
         }
         // 5. Return the ready to use data
