@@ -19,8 +19,12 @@ struct VideoListView: View {
         NavigationView {
             List {
                 ForEach(videos) { video in
-                    VideoListItemView(video: video)
-                        .padding(.vertical, 8)
+                    NavigationLink {
+                        VideoPlayerView(videoSelected: video.id, videoTitle: video.name)
+                    } label: {
+                        VideoListItemView(video: video)
+                            .padding(.vertical, 8)
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -34,7 +38,6 @@ struct VideoListView: View {
                     } label: {
                         Image(systemName: "arrow.2.squarepath")
                     }
-
                 }
             }
         }
