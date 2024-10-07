@@ -53,6 +53,8 @@ struct AnimalDetailView: View {
                     }
                     Group {
                         HeadingView(image: "books.vertical", text: "Learn More")
+                        ExternalLinkView(animal: animal)
+                            .padding(.bottom)
                     }
                 }
                 .padding(.horizontal)
