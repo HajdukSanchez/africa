@@ -24,12 +24,48 @@ struct MapView: View {
         Map(position: $cameraPosition) {
             ForEach(complexes) { complex in
                 Annotation(complex.name, coordinate: complex.locationCoordinate) {
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 32, height: 32)
+                    MapAnnotationView(location: complex)
                 }
             }
+        }
+        .overlay(alignment: .top) {
+            HStack(alignment: .center, spacing: 12) {
+                Image("compass")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 48, height: 48, alignment: .center)
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack {
+                        Text("Latitude")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.accent)
+                        Spacer()
+                        Text("\(String(describing: cameraPosition.region?.center.latitude))")
+                            .font(.footnote)
+                            .foregroundStyle(.white)
+                    }
+                    Divider()
+                    HStack {
+                        Text("Longitude")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.accent)
+                        Spacer()
+                        Text("\(String(describing: cameraPosition.region?.center.longitude))")
+                            .font(.footnote)
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
+            .background(
+                Color.black
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .opacity(0.6)
+            )
+            .padding()
         }
     }
 }

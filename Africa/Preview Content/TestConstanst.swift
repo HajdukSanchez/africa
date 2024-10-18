@@ -7,8 +7,11 @@
 
 import Foundation
 
-let _testAnimalData: [Animal] = Bundle.main.decode(JsonFilesNames.animals)
+private let _testAnimalData: [Animal] = Bundle.main.decode(JsonFilesNames.animals)
 let testAnimal: Animal = _testAnimalData[0]
 
-let _testVideoData: [Video] = Bundle.main.decode(JsonFilesNames.videos)
+private let _testVideoData: [Video] = Bundle.main.decode(JsonFilesNames.videos)
 let testVideo: Video = _testVideoData[0]
+
+private let _testLocationsData: [ComplexLocation] = Bundle.main.decode(JsonFilesNames.locations)
+let testLocation: ComplexLocation = _testLocationsData[0]
