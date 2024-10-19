@@ -18,7 +18,7 @@ struct VideoPlayerView: View {
     var body: some View {
         VStack {
             VideoPlayer(player: playVideo(fileName: videoSelected, fileFormat: "mp4"))
-                .overlay(alignment: .topLeading, content: {
+                .overlay(alignment: .topTrailing, content: {
                     Image("logo")
                         .resizable()
                         .scaledToFit()
